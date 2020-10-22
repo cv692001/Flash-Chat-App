@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/components/buttonWidget.dart';
+import 'package:flash_chat/layout.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -42,36 +43,42 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding:
+            EdgeInsets.symmetric(horizontal: displayWidth(context) * 0.066),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Hero(
-                  tag: 'logo',
-                  child: Container(
-                    child: Image.asset('images/logo.png'),
-                    height: controller.value * 100,
+            Center(
+              child: Row(
+                children: <Widget>[
+                  Hero(
+                    tag: 'logo',
+                    child: Container(
+                      child: Image.asset('images/logo.png'),
+                      height: controller.value * displayWidth(context) * 0.277,
+                    ),
                   ),
-                ),
-                Text(
-                  'Aifly Chat',
-                  style: TextStyle(
-                    fontSize: 38.0,
+                  Text(
+                    'Aifly Chat',
+                    style: TextStyle(
+                      fontSize: displayWidth(context) * 0.105,
 
-                    // fontWeight: FontWeight.w400,
+                      // fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
-              height: 48.0,
+              height: (displayHeight(context) -
+                      MediaQuery.of(context).padding.top -
+                      kToolbarHeight) *
+                  0.0937,
             ),
             Button_widget(
               color: Colors.lightBlueAccent,
-              text: 'Log In',
+              text: 'Log In ',
               onpress: () {
                 Navigator.pushNamed(context, LoginScreen.id);
               },

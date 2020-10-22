@@ -1,3 +1,4 @@
+import 'package:flash_chat/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -81,7 +82,11 @@ class _ChatScreenState extends State<ChatScreen> {
                   .snapshots(),
               builder: (context, snapshots) {
                 if (!snapshots.hasData) {
-                  print('jo');
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.lightBlueAccent,
+                    ),
+                  );
                 }
                 final messages = snapshots.data.docs.reversed;
                 List<MessageBubble> messageWidgets = [];
@@ -138,7 +143,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     },
                     child: Text(
                       'Send',
-                      style: kSendButtonTextStyle,
+                      style: kSendButtonTextStyle.copyWith(
+                        fontSize: displayWidth(context) * 0.05,
+                      ),
                     ),
                   ),
                 ],
@@ -171,7 +178,7 @@ class MessageBubble extends StatelessWidget {
               Text(
                 " $sender",
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: displayWidth(context) * 0.03333,
                   color: Colors.black54,
                 ),
               ),
@@ -195,7 +202,7 @@ class MessageBubble extends StatelessWidget {
                   child: Text(
                     text,
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: displayWidth(context) * 0.04166,
                     ),
                   ),
                 ),
